@@ -2,7 +2,7 @@ from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 import argparse
 
-def coco_eval(result_file="temp/results.json", anns="data/coco/annotations/instances_val2017.json"):
+def coco_eval(result_file="temp/results.json", anns="data/annotations/instances_val2017.json"):
     coco = COCO(anns)
     coco_dets = coco.loadRes(result_file)
     img_ids = coco.getImgIds()
