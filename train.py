@@ -45,17 +45,17 @@ def validate(dataloader, model):
 
 def main(config, params, dataset):
 
-    helper = Helper("/mnt/annotations/instances_val2017.json")
+    helper = Helper("data/annotations/instances_val2017.json")
    
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     start = time()
     print("Loading train dataset...")
-    train_dataset = Dataset("/mnt/preprocessed/preprocessed_train2017_" + dataset + ".pt")
+    train_dataset = Dataset("data/preprocessed/preprocessed_train2017_" + dataset + ".pt")
     torch.cuda.empty_cache()
 
     print("Loading validation set...")
-    val_dataset = Dataset("/mnt/preprocessed/preprocessed_val2017_" + dataset + ".pt")
+    val_dataset = Dataset("data/preprocessed/preprocessed_val2017_" + dataset + ".pt")
     torch.cuda.empty_cache()
     print("Loaded validation set. (t=%.1f seconds)" % (time() - start))
 
@@ -127,14 +127,8 @@ if __name__ == "__main__":
     torch.cuda.manual_seed_all(1)
 
     parser = ArgumentParser()
-    parser.add_argument(
-        "config",
-        default="cfg_000.json",
-        help="File with networks parameters in .cfg format",
-    )
-    parser.add_argument(
-        "dataset", default="cascade101", help="Train/val dataset name"
-    )
+    parser.add_argument("config", help="File with networks parameters in .cfg format")
+    parser.add_argument("dataset", help="Architecture/dataset name")
 
     args = parser.parse_args()
 

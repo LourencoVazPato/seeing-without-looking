@@ -103,7 +103,7 @@ def input_tensor(img_id, helper, device, dtype=torch.float):
 
 if __name__ == "__main__":
     args = parse_args()
-    data_root = "/mnt/"
+    data_root = "data/"
     path_dets = data_root + "detections/detections_" + args.dataset + "_" + args.architecture + ".json"
     path_anns = data_root + "annotations/instances_" + args.dataset + ".json"
     outfile = data_root + "preprocessed/preprocessed_" + args.dataset + "_" + args.architecture + "_test.pt"

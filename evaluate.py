@@ -10,7 +10,7 @@ from visualize import printBold
 from helper import Helper
 
 
-def coco_eval(result_file="temp/results.json", anns="data/instances_val2017.json"):
+def coco_eval(result_file="temp/results.json", anns="data/annotations/instances_val2017.json"):
     coco = COCO(anns)
     coco_dets = coco.loadRes(result_file)
     iou_type = "bbox"
@@ -89,12 +89,12 @@ def main():
 
     # Test-dev instances
     if args.test:
-        instances = "/mnt/annotations/instances_test-dev2017.json"
+        instances = "data/annotations/instances_test-dev2017.json"
         outfile = "temp/detections_test-dev2017_rescored_" + cfg + "_results.json"
 
     # validation set annotations
     else:
-        instances = "data/instances_val2017.json"
+        instances = "data/annotations/instances_val2017.json"
         outfile = "temp/val_results.json"
     
     helper = Helper(instances)

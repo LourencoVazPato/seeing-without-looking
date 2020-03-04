@@ -77,7 +77,7 @@ class Logger(object):
 
         if not os.path.exists(self.folder):
             os.makedirs(self.folder)
-        with open(self.folder + "/training.json", "w") as json_file:
+        with open(self.folder + "/training_logs.json", "w") as json_file:
             json.dump(stats, json_file)
         with open(self.folder + "/params.json", "w") as json_file:
             json.dump(self.params, json_file)

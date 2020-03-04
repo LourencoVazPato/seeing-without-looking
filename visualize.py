@@ -15,7 +15,7 @@ def printBold(text):
 def visualize_model(helper, params, state_dict, dataset, n_samples=10):
 
     # Load category data
-    with open("data/instances_val2017.json") as json_file:
+    with open("data/annotations/instances_val2017.json") as json_file:
         data = json.load(json_file)
     categories = data["categories"]
     categories = {cat["id"]: cat for cat in categories}
@@ -159,7 +159,7 @@ def main():
     state_dict = torch.load(args.folder + "model.pt")
     # Load validation dataset
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    validation_dataset = Dataset("data/preprocessed_val2017_ious_cascade101.pt", device)
+    validation_dataset = Dataset("data/preprocessed/preprocessed_val2017_ious_cascade101.pt", device)
     stats["hyperparams"]["input_size"] = 85
     visualize_model(
         state_dict, validation_dataset, stats["hyperparams"], ablation=args.ablation
