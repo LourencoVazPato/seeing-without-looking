@@ -102,10 +102,9 @@ def input_tensor(img_id, helper, device, dtype=torch.float):
 
 if __name__ == "__main__":
     args = parse_args()
-    data_root = "data/"
-    path_dets = data_root + "detections/detections_" + args.dataset + "_" + args.architecture + ".json"
-    path_anns = data_root + "annotations/instances_" + args.dataset + ".json"
-    outfile = data_root + "preprocessed/preprocessed_" + args.dataset + "_" + args.architecture + ".pt"
+    path_dets = "data/detections/detections_" + args.dataset + "_" + args.architecture + ".json"
+    path_anns = "data/annotations/instances_" + args.dataset + ".json"
+    outfile = "data/preprocessed/preprocessed_" + args.dataset + "_" + args.architecture + ".pt"
 
     assert os.path.exists(path_dets), "Detections path {} does not exist".format(path_dets)
     assert os.path.exists(path_anns), "Annotations path {} does not exist".format(path_anns)
@@ -121,8 +120,10 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     helper = Helper(path_anns, path_dets=path_dets)
 
-    matching = "gt"
+    # change these to try different matching algorithms
+    matching = "gt"  
     target_confidence = "iou"
+
     no_tps, w_tps = 0, 0
     tps, fps = 0, 0
     inputs, targets = {}, {}
