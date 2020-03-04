@@ -21,7 +21,6 @@ def parse_args():
 
 def to_one_hot(category_id, num_labels=80):
     """ Returns a one-hot encoded list for category_id (1-90) out of 80 classes
-
     First convert the category_id into the corresponding index (0-79), then create vector
 
     Args: 
