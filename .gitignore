@@ -1,5 +1,6 @@
 logs/
 temp/
+*.pyc
 data/annotations/*
 data/detections/*
 data/preprocessed/*

@@ -106,7 +106,7 @@ if __name__ == "__main__":
     data_root = "data/"
     path_dets = data_root + "detections/detections_" + args.dataset + "_" + args.architecture + ".json"
     path_anns = data_root + "annotations/instances_" + args.dataset + ".json"
-    outfile = data_root + "preprocessed/preprocessed_" + args.dataset + "_" + args.architecture + "_test.pt"
+    outfile = data_root + "preprocessed/preprocessed_" + args.dataset + "_" + args.architecture + ".pt"
 
     assert os.path.exists(path_dets), "Detections path {} does not exist".format(path_dets)
     assert os.path.exists(path_anns), "Annotations path {} does not exist".format(path_anns)
