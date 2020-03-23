@@ -14,18 +14,20 @@ from visualize import visualize_model
 from mmcv import ProgressBar
 
 
-def training_step(model, optimizer, input_batch, tgt_batch, lengths):
+def training_step(model, optimizer, input, target, lengths):
     model.train()
     optimizer.zero_grad()
-    mask = (tgt_batch != -1).float()
-    pred = model.forward(input_batch, lengths, mask)
-    loss = model.loss(pred, tgt_batch, input_batch)
+    mask = (target != -1).float()
+    #import pdb; pdb.set_trace()
+    pred = model.forward(input, lengths, mask)
+    loss = model.loss(pred, target)
+    #print('\n',loss)
     loss.backward()
     optimizer.step()
 
     # Count statistics
-    corrects = (pred.round() == tgt_batch.round()).sum()
-    total = (tgt_batch != -1).sum()
+    corrects = (pred.round() == target.round()).sum()
+    total = (target != -1).sum()
     return float(loss), int(corrects), int(total)
 
 
@@ -36,7 +38,7 @@ def validate(dataloader, model):
     for i, (input_tensor, target_tensor, lengths) in enumerate(dataloader):
         mask = (target_tensor != -1).float()
         predictions = model.forward(input_tensor, lengths, mask)
-        loss += model.loss(predictions, target_tensor, input_tensor).item()
+        loss += model.loss(predictions, target_tensor).item()
         corrects += (predictions.round() == target_tensor.round()).sum().item()
         total_predictions += (target_tensor != -1).sum().item()
     accuracy = corrects / total_predictions * 100
@@ -115,7 +117,7 @@ def main(config, params, dataset):
             break
 
     logger.close()
-    visualize_model(helper, params, logger.best_model, val_dataset)
+    #visualize_model(helper, params, logger.best_model, val_dataset)
     print(config)
 
 
