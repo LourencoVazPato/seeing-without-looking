@@ -15,7 +15,7 @@ def coco_eval(result_file="temp/results.json", anns="data/annotations/instances_
 
 parser = argparse.ArgumentParser()
 parser.add_argument("result_file")
-parser.add_argument("anns")
+parser.add_argument("--anns", default='data/annotations/instances_val2017.json')
 
 args = parser.parse_args()
 stats = coco_eval(args.result_file, args.anns)
