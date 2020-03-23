@@ -144,13 +144,13 @@ if __name__ == "__main__":
     print("\nPreprocessing done. Stats:")
     im = len(helper.images)
     dt = len(helper.detections)
-    print("Images with no detections: {} out of {}. Percentage: {}%".format(im - dt, im, (im - dt) / im * 100))
+    print("Images with no detections: {} out of {}. Percentage: {:.2f}%".format(im - dt, im, (im - dt) / im * 100))
     if "test" not in args.dataset:
         an = len(helper.annotations)
-        print("Images with no annotations: {} out of {}. Percentage: {}%".format(im - an, im, (im - an) / im * 100))
-        print("Images with no true positives: {} out of {}. Percentage: {}%".format(no_tps, im, no_tps / im * 100))
-        print("Images with true positives: {} out of {}. Percentage: {}%".format(w_tps, im, w_tps / im * 100))
-        print("True positives: {}; False positives: {};  Percentage of TPs: {}%".format(tps, fps, round(float(tps) / float(fps + tps) * 100, 2)))
+        print("Images with no annotations: {} out of {}. Percentage: {:.2f}%".format(im - an, im, (im - an) / im * 100))
+        print("Images with no true positives: {} out of {}. Percentage: {:.2f}%".format(no_tps, im, no_tps / im * 100))
+        print("Images with true positives: {} out of {}. Percentage: {:.2f}%".format(w_tps, im, w_tps / im * 100))
+        print("True positives: {}; False positives: {};  Percentage of TPs: {:.2f}%".format(tps, fps, round(float(tps) / float(fps + tps) * 100, 2)))
 
     print("Saving tensors...")
     torch.save((inputs, targets), outfile)
