@@ -49,6 +49,8 @@ class ContextualRescorer(nn.Module):
 
         self.linear1 = nn.Linear(layer_size, 80)
         self.linear2 = nn.Linear(80, 1, bias=False)
+        self.b1 = nn.BatchNorm1d(100, affine=True)
+        self.b2 = nn.BatchNorm1d(100, affine=True)
         self.relu = nn.ReLU()
         
         # Attention layers
@@ -100,7 +102,9 @@ class ContextualRescorer(nn.Module):
             if self.attention_type != "none":
                 hidden = torch.cat((hidden, context), dim=2)
         
+        hidden = self.b1(hidden)
         hidden = self.relu(self.linear1(hidden))
+        hidden = self.b2(hidden)
         hidden = self.linear2(hidden)
         hidden = torch.sigmoid(hidden)
         return hidden
@@ -143,7 +147,7 @@ class ContextualRescorer(nn.Module):
         ln = mask.sum(dim=1).sqrt().unsqueeze(2)  # [B, 1, 1]
         return scores / ln  # [B, L, L]
 
-    def loss(self, predictions, targets, input_):
+    def loss(self, predictions, targets):
         assert (
             predictions.shape == targets.shape
         ), "Predictions and targets have different shape"
