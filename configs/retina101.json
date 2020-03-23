@@ -7,7 +7,7 @@
     "skip_connection": false,
     "embedding": false,
     "embedding_size": 16,
-    "batch_size": 512,
+    "batch_size": 256,
     "shuffle_rate": 0.75,
     "dropout": 0,
     "learning_rate": 0.003,
