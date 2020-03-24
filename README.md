@@ -18,17 +18,18 @@ The model takes in a set of already made detections and predicts a new score for
 
 ### Results
 
-| Detector*              | val2017                | Improvement |   Download   |
-| :---------------------: | :--------------------: | :---------: | :----------: |
-| RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 |  + 1.0 AP   | model/config |
-| RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 |  + 0.6 AP   | model/config |
-| Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 |  + 1.1 AP   | model/config |
-| Faster R-CNN R-101-FPN  | 39.4 &rightarrow; 39.9 |  + 0.5 AP   | model/config |
-| Cascade R-CNN R-50-FPN  | 41.1 &rightarrow; 41.8 |  + 0.7 AP   | model/config |
-| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 |  + 0.7 AP   | model/config |
+| Detector*               | `val2017`              | improvement | `test-dev2017`         | inf time (fps)** |   Download   |
+| :---------------------: | :--------------------: | :---------: | :--------------------: | :--------------: | :----------: |
+| RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 |  + 1.0 AP   | 35.9 &rightarrow; 36.7 |  57.2            | model/config |
+| RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 |  + 0.6 AP   | 38.7 &rightarrow; 39.2 |  62.8            | model/config |
+| Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 |  + 1.1 AP   | 36.7 &rightarrow;      |  83.0            | model/config |
+| Faster R-CNN R-101-FPN  | 39.4 &rightarrow; 39.9 |  + 0.5 AP   | 39.7 &rightarrow; 40.1 |  90.7            | model/config |
+| Cascade R-CNN R-50-FPN  | 41.1 &rightarrow; 41.8 |  + 0.7 AP   | 41.5 &rightarrow; 41.9 |  97.2            | model/config |
+| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 |  + 0.7 AP   | 42.4 &rightarrow; 42.6 |  96.9            | model/config |
 
 *baseline detections were generated using Open MMLab [MMDetection](https://github.com/open-mmlab/mmdetection/) implementations from [MODEL_ZOO](https://github.com/open-mmlab/mmdetection/blob/master/docs/MODEL_ZOO.md)
-<!-- add some illustrations (images and tables) -->
+
+**inference time while processing one image at a time. If batching is used, inference can be much faster
 
 ## Installation and requirements
 
