@@ -9,14 +9,14 @@ The model takes in a set of already made detections and predicts a new score for
 
 **Results**
 
-| Detector                | val2017 | rescored val2017 | Improvement |   Download   |
-| :---------------------: | :-----: | :--------------: | :---------: | :----------: |
-| RetinaNet R-50-FPN      | 35.6    | 36.6             |  + 1.0 AP   | model/config |
-| RetinaNet R-101-FPN     | 38.1    | 38.7             |  + 0.6 AP   | model/config |
-| Faster R-CNN R-50-FPN   | 36.4    |              |    | model/config |
-| Faster R-CNN R-101-FPN  | 39.4    |                  |             | model/config |
-| Cascade R-CNN R-50-FPN  | 41.1    |                  |  +          | model/config |
-| Cascade R-CNN R-101-FPN | 42.1    | 42.8             |  + 0.7 AP   | model/config |
+| Detector                | val2017                | Improvement |   Download   |
+| :---------------------: | :--------------------: | :---------: | :----------: |
+| RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 |  + 1.0 AP   | model/config |
+| RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 |  + 0.6 AP   | model/config |
+| Faster R-CNN R-50-FPN   | 36.4         |    | model/config |
+| Faster R-CNN R-101-FPN  | 39.4         |             | model/config |
+| Cascade R-CNN R-50-FPN  | 41.1         |           | model/config |
+| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 |  + 0.7 AP   | model/config |
 
 <!-- add some illustrations (images and tables) -->
 
