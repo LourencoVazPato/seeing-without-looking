@@ -13,7 +13,7 @@ The model takes in a set of already made detections and predicts a new score for
 | :---------------------: | :--------------------: | :---------: | :----------: |
 | RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 |  + 1.0 AP   | model/config |
 | RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 |  + 0.6 AP   | model/config |
-| Faster R-CNN R-50-FPN   | 36.4         |    | model/config |
+| Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 |  + 1.1 AP   | model/config |
 | Faster R-CNN R-101-FPN  | 39.4         |             | model/config |
 | Cascade R-CNN R-50-FPN  | 41.1         |           | model/config |
 | Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 |  + 0.7 AP   | model/config |
