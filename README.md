@@ -1,11 +1,20 @@
 # Seeing without Looking: Contextual Rescoring of Object Detections for AP Maximization
 
-**[[PAPER](https://arxiv.org/abs/1912.12290)]**
+**[[arXiv](https://arxiv.org/abs/1912.12290)]**
+
+<p align="center">
+  <img width="200" src="docs/265108_predicted.jpg">
+  <img width="200" src="docs/265108_rescored.jpg">
+</p>
 
 ## Introduction
 
 Seeing without Looking is an approach that aims to improve Average Precision by rescoring the object detections with the use of contextual information inferred from other objects in the same image.
 The model takes in a set of already made detections and predicts a new score for each object. Because our method does not use any visual information, inference is **fast**.
+
+<p align="center">
+  <img height="200" src="docs/ApproachOverview-1.png">
+</p>
 
 ### Results
 
@@ -14,8 +23,8 @@ The model takes in a set of already made detections and predicts a new score for
 | RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 |  + 1.0 AP   | model/config |
 | RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 |  + 0.6 AP   | model/config |
 | Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 |  + 1.1 AP   | model/config |
-| Faster R-CNN R-101-FPN  | 39.4         |             | model/config |
-| Cascade R-CNN R-50-FPN  | 41.1         |           | model/config |
+| Faster R-CNN R-101-FPN  | 39.4 &rightarrow; 39.9 |  + 0.5 AP   | model/config |
+| Cascade R-CNN R-50-FPN  | 41.1 &rightarrow; 41.8 |  + 0.7 AP   | model/config |
 | Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 |  + 0.7 AP   | model/config |
 
 *baseline detections were generated using Open MMLab [MMDetection](https://github.com/open-mmlab/mmdetection/) implementations from [MODEL_ZOO](https://github.com/open-mmlab/mmdetection/blob/master/docs/MODEL_ZOO.md)
