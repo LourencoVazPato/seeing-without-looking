@@ -7,9 +7,20 @@
 Seeing without Looking is an approach that aims to improve Average Precision by rescoring the object detections with the use of contextual information inferred from other objects in the same image.
 The model takes in a set of already made detections and predicts a new score for each object. Because our method does not use any visual information, inference is **fast**.
 
+**Results**
+
+| Detector                | val2017 | rescored val2017 | Improvement |   Download   |
+| :---------------------: | :-----: | :--------------: | :---------: | :----------: |
+| RetinaNet R-50-FPN      | 35.6    | 36.6             |  + 1.0 AP   | model/config |
+| RetinaNet R-101-FPN     | 38.1    | 38.7             |  + 0.6 AP   | model/config |
+| Faster R-CNN R-50-FPN   | 36.4    |              |    | model/config |
+| Faster R-CNN R-101-FPN  | 39.4    |                  |             | model/config |
+| Cascade R-CNN R-50-FPN  | 41.1    |                  |  +          | model/config |
+| Cascade R-CNN R-101-FPN | 42.1    | 42.8             |  + 0.7 AP   | model/config |
+
 <!-- add some illustrations (images and tables) -->
 
-## Installation
+## Installation and requirements
 
 ## Example usage
 
@@ -55,10 +66,6 @@ Once you have a trained model you can perform inference without preprocessing by
 python inference.py <config> <model> <path_dets> <path_anns>
 ```
 Where `<config>` is the model config file, `<model>` is the model's weights file in `.pt` format, `<path_dets>` is the detections JSON file and `<path_anns>` is the annotations file.  
-
-## License
-
-## Contributors
 
 ## Citation
 ```
