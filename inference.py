@@ -49,17 +49,24 @@ if __name__ == "__main__":
     rescored = []
 
     for id_, dets in helper.detections.items():
-        ipt = input_tensor(id_, helper, device)
+        ipt = input_tensor(id_, helper, device).unsqueeze(0)
         dets.sort(key=lambda det: det["score"], reverse=True)
-        mask = torch.ones(1, 1, len(ipt), device=device, dtype=torch.float)
-        scores = model.forward(ipt.unsqueeze(0), [len(ipt)], mask).reshape(-1)
+        mask = torch.ones(1, 1, ipt.size(1), device=device, dtype=torch.float)
+        
+        # add paddings
+        if ipt.size(1) < 100:
+            pad = torch.zeros((1, 1, 100-ipt.size(1)), device=device)
+            mask = torch.cat((mask, pad), dim=2)
+            pad = torch.zeros((1, 100-ipt.size(1), 85), device=device)
+            ipt = torch.cat((ipt, pad), dim=1)
+        scores = model.forward(ipt, [ipt.size(1)], mask).reshape(-1)
         for i, det in enumerate(dets):
             det['score'] = round(scores[i].item(), 3)
             rescored.append(det)
         prog_bar.update()
 
     # Rescore detections and write to file
-    outfile = args.path_dets.replace('.json', '_rescored.json')
+    outfile = args.path_dets.replace('.json', '_rescored_results.json')
     print("\nWriting rescored detections to {}".format(outfile))
     with open(outfile, 'w') as fh:
         json.dump(rescored, fh)

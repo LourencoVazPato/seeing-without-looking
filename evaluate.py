@@ -90,7 +90,7 @@ def main():
     # Test-dev instances
     if args.test:
         instances = "data/annotations/instances_test-dev2017.json"
-        outfile = "temp/detections_test-dev2017_rescored_" + cfg + "_results.json"
+        outfile = "temp/detections_test-dev2017_" + cfg + "_rescored_results.json"
 
     # validation set annotations
     else:
