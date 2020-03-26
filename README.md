@@ -117,8 +117,6 @@ cd data/detections
 wget https://www.dropbox.com/s/9sdg9riao2806ar/detections_cascade101.zip
 unzip detections_cascade101.zip
 rm detections_cascade101.zip
-cd ../../configs
-wget https://www.dropbox.com/s/jcrgp3ts7rrnh03/cascade101.json
 ```
 
 ### 3.1. Pre-process detections
