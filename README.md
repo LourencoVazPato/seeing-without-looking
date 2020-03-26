@@ -33,14 +33,26 @@ Because our approach does not use any visual information, contextual rescoring i
 
 **approximate inference time during evaluation
 
-## Installation and requirements
+## 1. Getting started
 
-Getting started: **download** annotation files
+**1.1.** Clone git repo
+```
+git clone https://github.com/LourencoVazPato/seeing-without-looking.git
+```
 
+**1.2.** Install requirements
+```
+pip install -r requirements.txt
+```
 
-## Instructions
+**1.3.** Download annotation files and create useful folders
+```
+bash tools/setup.sh
+```
 
-### 1. Generating detections
+## 2. Usage instructions
+
+### 2.1. Generating detections
 
 Input detections must be generated using any detection architecture of your choosing and saved in a JSON file with the official [COCO results format](http://cocodataset.org/#format-results). 
 <!-- ```
@@ -51,13 +63,14 @@ Input detections must be generated using any detection architecture of your choo
     "score"         : float,
 }]
 ``` -->
-The generated detections must be saved under `data/detections/detections_<dataset>_<architecture>.json`, where `<architecture>` is the name of the model you have used for generating the detections and `<dataset>` refers to either `train2017`, `val2017` or `test-dev2017` splits of the COCO dataset.
+The generated detections must be saved under `data/detections/detections_<dataset>_<architecture>.json`, where `<architecture>` is the name of the model you have used for generating the detections and `<dataset>` refers to either `train2017`, `val2017` or `test-dev2017` splits of the COCO dataset. 
+
 You can measure the baseline AP on `val2017` by running:
 ```
 python tools/coco_eval.py data/detections_<dataset>_<architecture>.json data/annotations/instances_val2017.json
 ```
 
-### 2. Preprocessing detections
+### 2.2. Preprocessing detections
 
 The detections must be preprocessed and saved into disk to save time during training. For that, run:
 ```
@@ -66,7 +79,7 @@ python preprocessing.py <dataset> <architecture>
 Run this command for all datasets: `train2017`, `val2017`, and `test-dev2017`. 
 The preprocessed tensors will be saved to `data/preprocessed/preprocessed_<dataset>_<architecture>.pt`.
 
-### 3. Training the model
+### 2.3. Training the model
 
 Once the detections have been preprocessed, you can train a model by running:
 ```
@@ -75,7 +88,7 @@ python train.py <config_file> <architecture>
 Once training is completed, the training logs, model parameters and model config should be saved to `logs/<config_file>/`.
 Note that the logs will override the contents of `logs/<config_file>/`. A config file must be created under a different name for different architectures.
 
-### 4. Evaluating model (with preprocessed detections)
+### 2.4. Evaluating model (with preprocessed detections)
 ```
 python evaluate.py <config_file> <path_preprocessed>
 ```
@@ -84,7 +97,7 @@ If the preprocessed detections belong to `val2017`, the rescored results will be
 
 If the preprocessed detections belong to test-dev2017 set, the rescored results will be saved in `temp/detections_test-dev2017_<config>_rescored_results.json` and can be zipped and submitted for evaluation on [[CodaLab](https://competitions.codalab.org/competitions/20794#participate)].
 
-### 5. Performing inference (without preprocessed detections)
+### 2.5. Performing inference (without preprocessed detections)
 
 Once you have a trained model you can perform inference on the detections without preprocessing by running:
 ```
@@ -94,13 +107,70 @@ Where `<config>` is the model config file, `<model>` is the model's weights file
 
 We recommend using method 4 (with preprocessed detections) for official evaluation results as it yields slightly better scores.
 
-## Example usage
 
-### 0. Download trained model and preprocessed detections
+## 3. Example usage with Cascade R-CNN
 
-### 1. Train model
+### 3.0. Download detections for Cascade R-CNN R-101
+Altenatively, you can generate the detections on your own.
+```
+cd data/detections
+wget https://www.dropbox.com/s/9sdg9riao2806ar/detections_cascade101.zip
+unzip detections_cascade101.zip
+rm detections_cascade101.zip
+cd ../../configs
+wget https://www.dropbox.com/s/jcrgp3ts7rrnh03/cascade101.json
+```
 
-### 2. Evaluate model on `val2017`
+### 3.1. Pre-process detections
+```
+python preprocessing.py val2017 cascade101
+python preprocessing.py test-dev2017 cascade101
+python preprocessing.py train2017 cascade101
+```
+
+### 3.2. Train model
+```
+python train.py configs/cascade101.json cascade101
+```
+
+### 3.3. Evaluate model on `val2017`
+```
+python evaluate.py logs/cascade101/params.json data/preprocessed/preprocessed_val2017_cascade101.pt
+```
+The rescored results will be saved to `temp/val_results.json`
+
+### 3.4. Evaluate model on `test-dev2017`
+```
+python evaluate.py logs/cascade101/params.json data/preprocessed/preprocessed_test-dev2017_cascade101.pt
+```
+The rescored results will be saved to `temp/detections_test-dev2017_cascade101_rescored_results.json`
+
+
+## 4. Fast Usage (download trained model and rescore detections)
+
+**4.0.** Generate detections using your own detector.
+Or download raw detections. If you haven't run 3.0., then run:
+```
+cd data/detections
+wget https://www.dropbox.com/s/rx43xlc90vril99/detections_val2017_cascade101.json
+cd ../..
+```
+
+**4.1.** Download trained model.
+
+```
+cd logs
+wget https://www.dropbox.com/s/njv5jpi6bfvk0qq/cascade101.zip
+unzip cascade101.zip
+rm cascade101.zip
+cd ..
+```
+
+**4.2.** Perform inference
+```
+python inference.py logs/cascade101/params.json logs/cascade101/model.pt data/detections/detections_val2017_cascade101.json data/annotations/instances_val2017.json
+```
+
 
 ## Citation
 ```
