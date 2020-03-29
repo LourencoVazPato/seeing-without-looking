@@ -1,6 +1,6 @@
 # Seeing without Looking: Contextual Rescoring of Object Detections for AP Maximization
 
-**[[arXiv](https://arxiv.org/abs/1912.12290)]**
+**[[arXiv](https://arxiv.org/abs/1912.12290)]** **[[CVPR]()]**
 
 <p align="center">
   <img width="200" src="docs/265108_predicted.jpg">
@@ -22,12 +22,12 @@ Because our approach does not use any visual information, contextual rescoring i
 
 | Detector*               | `val2017` AP                      | `test-dev2017` AP                 | inf time (fps)** |   Download   |
 | :---------------------: | :-------------------------------: | :-------------------------------: | :--------------: | :----------: |
-| RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 **(+1.0)** | 35.9 &rightarrow; 36.8 **(+0.9)** |  93.5            |              |
-| RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 **(+0.6)** | 38.7 &rightarrow; 39.2 **(+0.5)** |  110.4           |              |
-| Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 **(+1.1)** | 36.7 &rightarrow; 37.5 **(+0.8)** |  196.1           |              |
-| Faster R-CNN R-101-FPN  | 39.4 &rightarrow; 39.9 **(+0.5)** | 39.7 &rightarrow; 40.1 **(+0.4)** |  255.7           |              |
-| Cascade R-CNN R-50-FPN  | 41.1 &rightarrow; 41.8 **(+0.7)** | 41.5 &rightarrow; 42.0 **(+0.5)** |  306.1           |              |
-| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 **(+0.7)** | 42.4 &rightarrow; 42.8 **(+0.4)** |  297.1           | [model](https://www.dropbox.com/s/njv5jpi6bfvk0qq/cascade101.zip) / [detections](https://www.dropbox.com/s/9sdg9riao2806ar/detections_cascade101.zip) |
+| RetinaNet R-50-FPN      | 35.6 &rightarrow; 36.6 **(+1.0)** | 35.9 &rightarrow; 36.8 **(+0.9)** |  93.5            | [model](https://www.dropbox.com/s/ce6dodofd5nu9d8/retina50.zip) / [detections](https://www.dropbox.com/s/sveqxg1ye5h8ukd/detections_retinanet50.zip) / [rescored](https://www.dropbox.com/s/264q2a7pkly8paq/rescored_retina50.zip) |
+| RetinaNet R-101-FPN     | 38.1 &rightarrow; 38.7 **(+0.6)** | 38.7 &rightarrow; 39.2 **(+0.5)** |  110.4           | [model](https://www.dropbox.com/s/lflggma9sffvfc7/retina101.zip) / [detections](https://www.dropbox.com/s/1nkd49iu0cebo56/detections_retinanet101.zip) / [rescored](https://www.dropbox.com/s/777v79c8ja9epw2/rescored_retina101.zip) |
+| Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 **(+1.1)** | 36.7 &rightarrow; 37.5 **(+0.8)** |  196.1           | [model](https://www.dropbox.com/s/dwbej7i8nqaxfza/faster50.zip) / [detections](https://www.dropbox.com/s/a0dlb4hutduaobl/detections_faster50.zip) / [rescored](https://www.dropbox.com/s/g0y09zwoifzywj1/rescored_faster50.zip) |
+| Faster R-CNN R-101-FPN  | 39.4 &rightarrow; 39.9 **(+0.5)** | 39.7 &rightarrow; 40.1 **(+0.4)** |  255.7           | [model](https://www.dropbox.com/s/z9xi2j0x1aujhxi/faster101.zip) / [detections](https://www.dropbox.com/s/vkubqbi6vrzflt6/detections_faster101.zip) / [rescored](https://www.dropbox.com/s/dtypwphno8ah03h/rescored_faster101.zip) |
+| Cascade R-CNN R-50-FPN  | 41.1 &rightarrow; 41.8 **(+0.7)** | 41.5 &rightarrow; 42.0 **(+0.5)** |  306.1           | [model](https://www.dropbox.com/s/eqnzinsqzobcitr/cascade50.zip) / [detections](https://www.dropbox.com/s/6ncbn876vs3hrom/detections_cascade50.zip) / [rescored](https://www.dropbox.com/s/j712snfffpgkjmu/rescored_cascade50.zip) |
+| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 **(+0.7)** | 42.4 &rightarrow; 42.8 **(+0.4)** |  297.1           | [model](https://www.dropbox.com/s/njv5jpi6bfvk0qq/cascade101.zip) / [detections](https://www.dropbox.com/s/9sdg9riao2806ar/detections_cascade101.zip) / [rescored](https://www.dropbox.com/s/und4ijnoi41rns5/rescored_cascade101.zip) |
 
 *baseline detections were generated using Open MMLab [MMDetection](https://github.com/open-mmlab/mmdetection/) implementations from [MODEL_ZOO](https://github.com/open-mmlab/mmdetection/blob/master/docs/MODEL_ZOO.md)
 
@@ -95,7 +95,7 @@ python evaluate.py <config_file> <path_preprocessed>
 
 If the preprocessed detections belong to `val2017`, the rescored results will be saved in `temp/val_results.json` and the validation AP is computed.
 
-If the preprocessed detections belong to test-dev2017 set, the rescored results will be saved in `temp/detections_test-dev2017_<config>_rescored_results.json` and can be zipped and submitted for evaluation on [[CodaLab](https://competitions.codalab.org/competitions/20794#participate)].
+If the preprocessed detections belong to test-dev2017 set, the rescored results will be saved in `temp/detections_test-dev2017_<config>_rescored_results.json` and can be zipped and submitted for evaluation on [CodaLab](https://competitions.codalab.org/competitions/20794#participate).
 
 ### 2.5. Performing inference (without preprocessed detections)
 
