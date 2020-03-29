@@ -27,7 +27,7 @@ Because our approach does not use any visual information, contextual rescoring i
 | Faster R-CNN R-50-FPN   | 36.4 &rightarrow; 37.5 **(+1.1)** | 36.7 &rightarrow; 37.5 **(+0.8)** |  196.1           |              |
 | Faster R-CNN R-101-FPN  | 39.4 &rightarrow; 39.9 **(+0.5)** | 39.7 &rightarrow; 40.1 **(+0.4)** |  255.7           |              |
 | Cascade R-CNN R-50-FPN  | 41.1 &rightarrow; 41.8 **(+0.7)** | 41.5 &rightarrow; 42.0 **(+0.5)** |  306.1           |              |
-| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 **(+0.7)** | 42.4 &rightarrow; 42.8 **(+0.4)** |  297.1           | [model](https://www.dropbox.com/s/njv5jpi6bfvk0qq/cascade101.zip) [detections](https://www.dropbox.com/s/9sdg9riao2806ar/detections_cascade101.zip) |
+| Cascade R-CNN R-101-FPN | 42.1 &rightarrow; 42.8 **(+0.7)** | 42.4 &rightarrow; 42.8 **(+0.4)** |  297.1           | [model](https://www.dropbox.com/s/njv5jpi6bfvk0qq/cascade101.zip) / [detections](https://www.dropbox.com/s/9sdg9riao2806ar/detections_cascade101.zip) |
 
 *baseline detections were generated using Open MMLab [MMDetection](https://github.com/open-mmlab/mmdetection/) implementations from [MODEL_ZOO](https://github.com/open-mmlab/mmdetection/blob/master/docs/MODEL_ZOO.md)
 
@@ -175,7 +175,7 @@ python inference.py logs/cascade101/params.json logs/cascade101/model.pt data/de
 @article{pato2019seeing,
   title={Seeing without Looking: Contextual Rescoring of Object Detections for AP Maximization},
   author={Pato, Lourenço V. and Negrinho, Renato and Aguiar, Pedro M. Q.},
-  journal={arXiv preprint arXiv:1912.12290},
-  year={2019}
+  journal={CVPR},
+  year={2020}
 }
 ```
