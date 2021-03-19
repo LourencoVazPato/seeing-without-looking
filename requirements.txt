@@ -3,5 +3,5 @@ matplotlib==3.0.2
 torch==1.1.0
 termcolor==1.1.0
 mmcv==0.4.0
-Pillow==7.0.0
+Pillow==8.1.1
 pycocotools==2.0.0
